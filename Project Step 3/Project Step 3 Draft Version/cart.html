@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!--Icons -->
+		<script src="https://kit.fontawesome.com/36a89004c5.js" crossorigin="anonymous"></script>
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<!-- End of Bootstrap Style -->
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<title>Boba Best-Teas</title>
+	</head>
+	<body>
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<!-- Nav Bar -->
+		<nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top" data-toggle="affix">
+			<img src="./images/icon.png" width="30" height="30" class="d-inline-block align-top" alt="boba-icon"> Boba Best-Teas
+			<div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
+			<div class="nav">
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav ">
+						<li>
+							<a class="nav-link" href="index.html"> HOME </a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="drink.html"> DRINKS </a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="topping.html"> TOPPINGS </a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="register.html"> CUSTOMERS </a>
+						</li>
+					</ul>
+				</div>
+				<a href="order.html" class="btn btn-primary mr-auto order-btn"> ORDER </a>
+				<a href="cart.html" class="btn btn-outline-dark cart-btn"><i class="fas fa-shopping-cart"></i></a>
+			</div>
+		</nav>
+		<p>
+		<p>
+		<p>
+		<p>
+			<!-- Cart Form -->
+		<div class="container">
+			<div class="card text-center">
+				<div class="card-header">
+					<h2 class="card-title">CART</h2>
+				</div>
+				<div class="food-menu-card">
+					<div class="register-form">
+						<form action="#" method="get">
+							<fieldset>
+								<div class="cid">
+									Customer ID: 0001 - Fname Lname
+								</div>
+							</fieldset>
+							<fieldset>
+								<table class="table">
+									<thead>
+										<tr>
+											<th scope="col">Drink #</th>
+											<th scope="col">Base Drink</th>
+											<th scope="col">Size</th>
+											<th scope="col">Toppings</th>
+											<th scope="col">Price</th>
+											<th scope="col"></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th scope="row">1</th>
+											<td>Base Drink #1</td>
+											<td>Large</td>
+											<td></td>
+											<td>$8.20</td>
+											<td>
+												<button onclick="myFunction()" type="submit" class="btn btn-primary btn-sm" value="ADD ITEM"  name="add-item">EDIT</button>
+												<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM"  name="add-item">X</button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">1</th>
+											<td>Base Drink #1</td>
+											<td>Large</td>
+											<td>Topping 1, Topping 2</td>
+											<td>$9.20</td>
+											<td>
+												<button onclick="myFunction()" type="submit" class="btn btn-primary btn-sm" value="ADD ITEM"  name="add-item">EDIT</button>
+												<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM"  name="add-item">X</button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">1</th>
+											<td>Base Drink #1</td>
+											<td>Large</td>
+											<td>Topping 1, Topping 2</td>
+											<td>$9.20</td>
+											<td>
+												<button onclick="myFunction()" type="submit" class="btn btn-primary btn-sm" value="ADD ITEM" name="add-item">EDIT</button>
+												<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM"  name="add-item">X</button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row"></th>
+											<td></td>
+											<td></td>
+											<td>TOTAL</td>
+											<td>$26.40</td>
+											<td></td>
+										</tr>
+									</tbody>
+								</table>
+							</fieldset>
+							<fieldset>
+								<button onclick="myFunction()" type="submit" class="btn btn-primary btn-lg" value="COMPLETE" name="add-item">COMPLETE</button>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			function myFunction() {
+			  alert("I don't do anything at this point.");
+			}
+		</script>
+	</body>
+</html>
