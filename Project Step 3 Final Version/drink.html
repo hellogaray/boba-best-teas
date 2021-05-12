@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!--Icons -->
+		<script src="https://kit.fontawesome.com/36a89004c5.js" crossorigin="anonymous"></script>
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<!-- End of Bootstrap Style -->
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<title>Boba Best-Teas</title>
+	</head>
+	<body>
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<!-- Nav Bar -->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<img src="./images/icon.png" width="30" height="30" class="d-inline-block align-top" alt="boba-icon">Boba Best-Teas
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="nav navbar-nav ml-auto">
+						<li class="nav-item">
+						<a class="nav-link" href="index.html"> HOME </a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="drink.html"> DRINKS </a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="topping.html"> TOPPINGS </a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="register.html"> CUSTOMERS </a>
+						</li>
+						<li class="nav-item">
+							<a href="order.html" class="btn btn-primary mr-auto"> ORDER </a>
+							<a href="cart.html" class="btn btn-outline-dark"><i class="fas fa-shopping-cart"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<p>
+		<p>
+		<p>
+		<p>
+			<!-- Add Topping Form -->
+		<div class="container">
+			<div class="card text-center">
+				<div class="card-header">
+					<h2 class="card-title">ADD DRINK</h2>
+				</div>
+				<div class="drink-menu">
+					<div class="register-form" >
+						<form action="#" method="get">
+							<fieldset>
+								<div class="drink_name">
+									<label>
+									Drink Name
+									<input type="text" name="cid">
+									</label>
+								</div>
+							</fieldset>
+							<fieldset>
+								<div class="topping_price">
+									<label>
+									Drink Price (Small)
+									<input type="number" name="price_sm">
+									</label>
+								</div>
+								<div class="topping_price">
+									<label>
+									Drink Price (Medium)
+									<input type="number" name="price_gl">
+									</label>
+								</div>
+								<div class="topping_price">
+									<label>
+									Drink Price (Large)
+									<input type="number" name="price_md">
+									</label>
+								</div>
+							</fieldset>
+							<fieldset>
+								<button onclick="myFunction()" type="submit" class="btn btn-primary btn-lg" value="ADD ITEM"  name="add-item">ADD</button>
+								<button onclick="myFunction()" type="submit" class="btn btn-primary btn-lg" value="CLEAR"  name="clear">CLEAR</button>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Topping Form -->
+		<div class="container">
+			<div class="card text-center">
+				<div class="card-header">
+					<h2 class="card-title">All Drinks</h2>
+				</div>
+				<div class="food-menu-card">
+					<div class="drinks-form" style="overflow-y:hidden">
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">Drink ID</th>
+									<th scope="col">Drink Name</th>
+									<th scope="col">Drink Cost (Small)</th>
+									<th scope="col">Drink Cost (Medium)</th>
+									<th scope="col">Drink Cost (Large)</th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>01</td>
+									<td>Boba Tealicious</td>
+									<td>$3.50</td>
+									<td>$5.50</td>
+									<td>$8.50</td>
+									<td>
+										<button onclick="myFunction()" type="submit" class="btn btn-primary btn-sm" value="ADD ITEM"  name="add-item">EDIT</button>
+										<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM"  name="add-item">X</button>
+									</td>
+								</tr>
+								<tr>
+									<td>02</td>
+									<td>Double Bubble</td>
+									<td>$3.50</td>
+									<td>$5.50</td>
+									<td>$8.50</td>
+									<td>
+										<button onclick="myFunction()" type="submit" class="btn btn-primary btn-sm" value="ADD ITEM"  name="add-item">EDIT</button>
+										<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM"  name="add-item">X</button>
+									</td>
+								</tr>
+								<tr>
+									<td>03</td>
+									<td>So ThirsTea</td>
+									<td>$3.50</td>
+									<td>$5.50</td>
+									<td>$8.50</td>
+									<td>
+										<button onclick="myFunction()" type="submit" class="btn btn-primary btn-sm" value="ADD ITEM"  name="add-item">EDIT</button>
+										<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM"  name="add-item">X</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			function myFunction() {
+			  alert("I don't do anything at this point.");
+			}
+		</script>
+	</body>
+</html>
