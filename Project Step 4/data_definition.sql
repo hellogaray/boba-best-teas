@@ -130,13 +130,13 @@ Tracks what toppings are to be added to a particular ordered drink. */
 CREATE TABLE drinks_toppings (
   instance_id INT(10) NOT NULL,
   topping_id INT(10) NOT NULL,
-  PRIMARY KEY (instance_id, topping_id)
+  PRIMARY KEY (instance_id, topping_id),
   FOREIGN KEY (instance_id) REFERENCES drinks_instances (instance_id) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (topping_id) REFERENCES toppings (topping_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 /* Example Data for Table drinks_toppings */
-INSERT INTO toppings (instance_id, topping_id)
+INSERT INTO drinks_toppings (instance_id, topping_id)
 VALUES
   -- Add Black Boba to Boba Tealicious
   (1, 1),
