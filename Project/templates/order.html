@@ -133,16 +133,18 @@
 			</div>
 		</div>
 		<!-- Searc Order by ID -->
-		<div class="card text-center">
-			<div class="card-header">
-				<h2 class="card-title">Search by Customer ID</h2>
-			</div>
-			<div class="food-menu-card">
-				<div class="input-group">
-					<input id="search-order" class="form-control" />
-					<button type="button" class="btn btn-primary btn-sm">
-					<i class="fas fa-search"></i>
-					</button>
+		<div class="container">
+			<div class="card text-center">
+				<div class="card-header">
+					<h2 class="card-title">Search by Customer ID</h2>
+				</div>
+				<div class="food-menu-card">
+					<div class="input-group">
+						<input id="search-order" class="form-control" />
+						<button type="button" class="btn btn-primary btn-sm">
+						<i class="fas fa-search"></i>
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -153,7 +155,7 @@
 					<h2 class="card-title">All Orders</h2>
 				</div>
 				<div class="food-menu-card">
-					<div class="register-form">
+					<div class="input-group">
 						<table class="table-order" style="overflow-y:hidden">
 							<thead>
 								<tr>
@@ -171,12 +173,12 @@
 								</tr>
 							</thead>
 							<tbody>
-                                <tr>
-                                {% for row in data %}
-                                <tr>
-                                    <td>{{row[0]}}</td>
-                                    <td>{{row[1]}}</td>
-                                    <td>{{row[2]}}</td>
+								<tr>
+								{% for row in data %}
+								<tr>
+									<td>{{row[0]}}</td>
+									<td>{{row[1]}}</td>
+									<td>{{row[2]}}</td>
 									<td>{{row[3]}}</td>
 									<td>{{row[4]}}</td>
 									<td>{{row[5]}}</td>
@@ -188,10 +190,10 @@
 										<button onclick="updatePerson({{row[0]}})" class="btn btn-primary btn-sm" name="add-item">EDIT</button>
 										<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM" name="add-item">X</button>
 									</td>
-                                </tr>
-                                {% endfor %}
-                                </tr>
-                            </tbody>
+								</tr>
+								{% endfor %}
+								</tr>
+							</tbody>
 						</table>
 					</div>
 				</div>
