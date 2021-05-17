@@ -39,7 +39,6 @@
 						</li>
 						<li class="nav-item">
 							<a href="{{url_for('order')}}" class="btn btn-primary mr-auto"> ORDER </a>
-							<a href="{{url_for('cart')}}" class="btn btn-outline-dark"><i class="fas fa-shopping-cart"></i></a>
 						</li>
 					</ul>
 				</div>
@@ -160,87 +159,39 @@
 								<tr>
 									<th scope="col">Order ID</th>
 									<th scope="col">Customer ID</th>
+									<th scope="col">First Name</th>
+									<th scope="col">Last Name</th>
 									<th scope="col">Instance ID</th>
-									<th scope="col">Drink ID</th>
+									<th scope="col">Drink NAme</th>
 									<th scope="col">Size</th>
-									<th scope="col">Topping ID</th>
+									<th scope="col">Size Cost</th>
+									<th scope="col">Topping Name</th>
+									<th scope="col">Total Cost</th>
 									<th scope="col"></th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>01</td>
-									<td>01</td>
-									<td>01</td>
-									<td>02</td>
-									<td>L</td>
-									<td>03</td>
+                                <tr>
+                                {% for row in data %}
+                                <tr>
+                                    <td>{{row[0]}}</td>
+                                    <td>{{row[1]}}</td>
+                                    <td>{{row[2]}}</td>
+									<td>{{row[3]}}</td>
+									<td>{{row[4]}}</td>
+									<td>{{row[5]}}</td>
+									<td>{{row[6]}}</td>
+									<td>{{row[7]}}</td>
+									<td>{{row[8]}}</td>
+									<td>{{row[9]}}</td>
 									<td>
-										<button onclick="myFunction()" type="submit" class="btn btn-primary btn-sm" value="ADD ITEM"  name="add-item">EDIT</button>
-										<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM"  name="add-item">X</button>
+										<button onclick="updatePerson({{row[0]}})" class="btn btn-primary btn-sm" name="add-item">EDIT</button>
+										<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM" name="add-item">X</button>
 									</td>
-								</tr>
-								<tr>
-									<td>01</td>
-									<td>01</td>
-									<td>01</td>
-									<td>02</td>
-									<td>L</td>
-									<td>03</td>
-									<td>
-										<button onclick="myFunction()" type="submit" class="btn btn-primary btn-sm" value="ADD ITEM"  name="add-item">EDIT</button>
-										<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM"  name="add-item">X</button>
-									</td>
-								</tr>
-								<tr>
-									<td>02</td>
-									<td>01</td>
-									<td>02</td>
-									<td>05</td>
-									<td>M</td>
-									<td>N/A</td>
-									<td>
-										<button onclick="myFunction()" type="submit" class="btn btn-primary btn-sm" value="ADD ITEM"  name="add-item">EDIT</button>
-										<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM"  name="add-item">X</button>
-									</td>
-								</tr>
-								<tr>
-									<td>02</td>
-									<td>02</td>
-									<td>04</td>
-									<td>05</td>
-									<td>M</td>
-									<td>N/A</td>
-									<td>
-										<button onclick="myFunction()" type="submit" class="btn btn-primary btn-sm" value="ADD ITEM"  name="add-item">EDIT</button>
-										<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM"  name="add-item">X</button>
-									</td>
-								</tr>
-								<tr>
-									<td>03</td>
-									<td>01</td>
-									<td>02</td>
-									<td>05</td>
-									<td>S</td>
-									<td>N/A</td>
-									<td>
-										<button onclick="myFunction()" type="submit" class="btn btn-primary btn-sm" value="ADD ITEM"  name="add-item">EDIT</button>
-										<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM"  name="add-item">X</button>
-									</td>
-								</tr>
-								<tr>
-									<td>04</td>
-									<td>01</td>
-									<td>02</td>
-									<td>01</td>
-									<td>M</td>
-									<td>05</td>
-									<td>
-										<button onclick="myFunction()" type="submit" class="btn btn-primary btn-sm" value="ADD ITEM"  name="add-item">EDIT</button>
-										<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM"  name="add-item">X</button>
-									</td>
-								</tr>
-							</tbody>
+                                </tr>
+                                {% endfor %}
+                                </tr>
+                            </tbody>
 						</table>
 					</div>
 				</div>

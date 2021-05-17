@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<!-- End of Bootstrap Style -->
 		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
-		<title>Boba Best-Teas</title>
+		<title>Boba Best-Teas - Add New Customer</title>
 	</head>
 	<body>
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -48,67 +48,59 @@
 		<p>
 		<p>
 		<p>
-			<!-- Add Topping Form -->
+		<!-- Register Form -->
 		<div class="container">
 			<div class="card text-center">
 				<div class="card-header">
-					<h2 class="card-title">ADD DRINK</h2>
+					<h2 class="card-title">ADD CUSTOMER</h2>
 				</div>
-				<div class="drink-menu">
-					<div class="register-form" >
-						<form id="adddrink" action="/drink" method="post">
+				<div class="food-menu-card">
+					<div class="register-form">
+						<form id="addcustomer" action="/register" method="post">
 							<fieldset>
 								<fieldset>
-									<div class="drink_name">
-										<label>Drink Name
-										<input type="text" name="drink_name">
+									<div class="first_name">
+										<label>First Name
+										<input type="text" name="first_name">
 										</label>
 									</div>
 								</fieldset>
 								<fieldset>
-									<div class="small_cost">
-										<label>Small Cost
-										<input type="number" step="0.01" name="small_cost">
+									<div class="last_name">
+										<label>Last Name
+										<input type="text" name="last_name">
 										</label>
 									</div>
 								</fieldset>
 								<fieldset>
-									<div class="medium_cost">
-										<label>Medium Cost
-										<input type="number" step="0.01" name="medium_cost">
+									<div class="phone_number">
+										<label>Phone Number
+										<input type="text" name="phone_number" >
 										</label>
 									</div>
 								</fieldset>
-								<fieldset>
-									<div class="large_cost">
-										<label>Large Cost
-										<input type="number" step="0.01" name="large_cost">
-										</label>
-									</div>
-								</fieldset>
-								<input type="submit" class="btn btn-primary btn-lg" value="SUBMIT" name="drink-create">
+								<input type="submit" class="btn btn-primary btn-lg" value="SUBMIT" name="customer_create">
 							</fieldset>
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Topping Form -->
+		<!-- All Customers Table -->
 		<div class="container">
 			<div class="card text-center">
 				<div class="card-header">
-					<h2 class="card-title">All Drinks</h2>
+					<h2 class="card-title">All Customers</h2>
 				</div>
 				<div class="food-menu-card">
-					<div class="drinks-form" style="overflow-y:hidden">
+					<div class="register-form" style="overflow-y:hidden">
 						<table class="table">
 							<thead>
 								<tr>
-									<th scope="col">Drink ID</th>
-									<th scope="col">Drink Name</th>
-									<th scope="col">Drink Cost (Small)</th>
-									<th scope="col">Drink Cost (Medium)</th>
-									<th scope="col">Drink Cost (Large)</th>
+									<th scope="col">Customer ID</th>
+									<th scope="col">First Name</th>
+									<th scope="col">Last Name</th>
+									<th scope="col">Phone Numer</th>
 									<th scope="col"></th>
 								</tr>
 							</thead>
@@ -119,8 +111,7 @@
                                     <td>{{row[0]}}</td>
                                     <td>{{row[1]}}</td>
                                     <td>{{row[2]}}</td>
-									<td>{{row[3]}}</td>
-									<td>{{row[4]}}</td>
+                                    <td>{{row[3]}}</td>
 									<td>
 										<button onclick="updatePerson({{row[0]}})" class="btn btn-primary btn-sm" name="add-item">EDIT</button>
 										<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM" name="add-item">X</button>
@@ -134,10 +125,5 @@
 				</div>
 			</div>
 		</div>
-		<script>
-			function myFunction() {
-			  alert("I don't do anything at this point.");
-			}
-		</script>
 	</body>
 </html>

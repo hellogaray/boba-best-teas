@@ -39,7 +39,6 @@
 						</li>
 						<li class="nav-item">
 							<a href="{{url_for('order')}}" class="btn btn-primary mr-auto"> ORDER </a>
-							<a href="{{url_for('cart')}}" class="btn btn-outline-dark"><i class="fas fa-shopping-cart"></i></a>
 						</li>
 					</ul>
 				</div>
@@ -56,27 +55,24 @@
 					<h2 class="card-title">ADD TOPPING</h2>
 				</div>
 				<div class="topping-menu">
-					<div class="register-form">
-						<form action="#" method="get">
+					<div class="topping-form">
+						<form id="addtopping" action="/topping" method="post">
 							<fieldset>
-								<div class="topping_name">
-									<label>
-									Topping Name
-									<input type="text" name="cid">
-									</label>
-								</div>
-							</fieldset>
-							<fieldset>
-								<div class="topping_price">
-									<label>
-									Topping Price
-									<input type="text" name="cid">
-									</label>
-								</div>
-							</fieldset>
-							<fieldset>
-								<button onclick="myFunction()" type="submit" class="btn btn-primary btn-lg" value="ADD ITEM" name="add-item">ADD</button>
-								<button onclick="myFunction()" type="submit" class="btn btn-primary btn-lg" value="CLEAR" name="clear">CLEAR</button>
+								<fieldset>
+									<div class="topping_name">
+										<label>Topping Name
+										<input type="text" name="topping_name">
+										</label>
+									</div>
+								</fieldset>
+								<fieldset>
+									<div class="total_cost">
+										<label>Topping Price
+										<input type="number" step="0.01" name="total_cost">
+										</label>
+									</div>
+								</fieldset>
+								<input type="submit" class="btn btn-primary btn-lg" value="SUBMIT" name="topping-up">
 							</fieldset>
 						</form>
 					</div>
@@ -101,34 +97,20 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>01</td>
-									<td>Topping #1</td>
-									<td>$0.50</td>
+                                <tr>
+                                {% for row in data %}
+                                <tr>
+                                    <td>{{row[0]}}</td>
+                                    <td>{{row[1]}}</td>
+                                    <td>{{row[2]}}</td>
 									<td>
-										<button onclick="myFunction()" type="submit" class="btn btn-primary btn-sm" value="ADD ITEM" name="add-item">EDIT</button>
+										<button onclick="updatePerson({{row[0]}})" class="btn btn-primary btn-sm" name="add-item">EDIT</button>
 										<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM" name="add-item">X</button>
 									</td>
-								</tr>
-								<tr>
-									<td>02</td>
-									<td>Topping #1</td>
-									<td>$0.50</td>
-									<td>
-										<button onclick="myFunction()" type="submit" class="btn btn-primary btn-sm" value="ADD ITEM" name="add-item">EDIT</button>
-										<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM" name="add-item">X</button>
-									</td>
-								</tr>
-								<tr>
-									<td>03</td>
-									<td>Topping #1</td>
-									<td>$0.50</td>
-									<td>
-										<button onclick="myFunction()" type="submit" class="btn btn-primary btn-sm" value="ADD ITEM" name="add-item">EDIT</button>
-										<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM" name="add-item">X</button>
-									</td>
-								</tr>
-							</tbody>
+                                </tr>
+                                {% endfor %}
+                                </tr>
+                            </tbody>
 						</table>
 					</div>
 				</div>
