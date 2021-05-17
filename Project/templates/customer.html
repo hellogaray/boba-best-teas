@@ -35,7 +35,7 @@
 							<a class="nav-link" href="{{url_for('topping')}}"> TOPPINGS </a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{url_for('register')}}"> CUSTOMERS </a>
+							<a class="nav-link" href="{{url_for('customer')}}"> CUSTOMERS </a>
 						</li>
 						<li class="nav-item">
 							<a href="{{url_for('order')}}" class="btn btn-primary mr-auto"> ORDER </a>
@@ -55,30 +55,21 @@
 					<h2 class="card-title">ADD CUSTOMER</h2>
 				</div>
 				<div class="food-menu-card">
-					<div class="register-form">
-						<form id="addcustomer" action="/register" method="post">
+					<div class="customer-form">
+						<form id="addcustomer" action="/customer" method="post">
 							<fieldset>
-								<fieldset>
-									<div class="first_name">
-										<label>First Name
-										<input type="text" name="first_name">
-										</label>
-									</div>
-								</fieldset>
-								<fieldset>
-									<div class="last_name">
-										<label>Last Name
-										<input type="text" name="last_name">
-										</label>
-									</div>
-								</fieldset>
-								<fieldset>
-									<div class="phone_number">
-										<label>Phone Number
-										<input type="text" name="phone_number" >
-										</label>
-									</div>
-								</fieldset>
+								<div class="form-row">
+									<div class="form-group col-md-4">
+										<label>First Name</label>
+										<input class="form-control" type="text" name="first_name"> </div>
+									<div class="form-group col-md-4">
+										<label>Last Name</label>
+										<input class="form-control" type="text" name="last_name"> </div>
+									<div class="form-group col-md-4">
+										<label>Phone Number</label>
+										<input class="form-control" type="text" name="phone_number"> </div>
+								</div>
+							</fieldset>
 								<input type="submit" class="btn btn-primary btn-lg" value="SUBMIT" name="customer_create">
 							</fieldset>
 						</form>
@@ -90,10 +81,10 @@
 		<div class="container">
 			<div class="card text-center">
 				<div class="card-header">
-					<h2 class="card-title">All Customers</h2>
+					<h2 class="card-title">CUSTOMERS</h2>
 				</div>
 				<div class="food-menu-card">
-					<div class="register-form" style="overflow-y:hidden">
+					<div class="customer-form" style="overflow-y:hidden">
 						<table class="table">
 							<thead>
 								<tr>

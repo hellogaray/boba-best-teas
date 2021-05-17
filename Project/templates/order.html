@@ -35,7 +35,7 @@
 							<a class="nav-link" href="{{url_for('topping')}}"> TOPPINGS </a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{url_for('register')}}"> CUSTOMERS </a>
+							<a class="nav-link" href="{{url_for('customer')}}"> CUSTOMERS </a>
 						</li>
 						<li class="nav-item">
 							<a href="{{url_for('order')}}" class="btn btn-primary mr-auto"> ORDER </a>
@@ -55,7 +55,7 @@
 					<h2 class="card-title">ORDER</h2>
 				</div>
 				<div class="food-menu-card">
-					<div class="register-form">
+					<div class="order-form">
 						<form action="#" method="get">
 							<fieldset>
 								<fieldset>
@@ -136,7 +136,7 @@
 		<div class="container">
 			<div class="card text-center">
 				<div class="card-header">
-					<h2 class="card-title">Search by Customer ID</h2>
+					<h2 class="card-title">SEARCH BY CUSTOMER ID</h2>
 				</div>
 				<div class="food-menu-card">
 					<div class="input-group">
@@ -152,7 +152,7 @@
 		<div class="container">
 			<div class="card text-center">
 				<div class="card-header">
-					<h2 class="card-title">All Orders</h2>
+					<h2 class="card-title">ORDERS</h2>
 				</div>
 				<div class="food-menu-card">
 					<div class="input-group">
@@ -178,14 +178,6 @@
 								<tr>
 									<td>{{row[0]}}</td>
 									<td>{{row[1]}}</td>
-									<td>{{row[2]}}</td>
-									<td>{{row[3]}}</td>
-									<td>{{row[4]}}</td>
-									<td>{{row[5]}}</td>
-									<td>{{row[6]}}</td>
-									<td>{{row[7]}}</td>
-									<td>{{row[8]}}</td>
-									<td>{{row[9]}}</td>
 									<td>
 										<button onclick="updatePerson({{row[0]}})" class="btn btn-primary btn-sm" name="add-item">EDIT</button>
 										<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM" name="add-item">X</button>

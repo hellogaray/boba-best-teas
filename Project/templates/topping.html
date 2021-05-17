@@ -35,7 +35,7 @@
 							<a class="nav-link" href="{{url_for('topping')}}"> TOPPINGS </a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{url_for('register')}}"> CUSTOMERS </a>
+							<a class="nav-link" href="{{url_for('customer')}}"> CUSTOMERS </a>
 						</li>
 						<li class="nav-item">
 							<a href="{{url_for('order')}}" class="btn btn-primary mr-auto"> ORDER </a>
@@ -59,17 +59,13 @@
 						<form id="addtopping" action="/topping" method="post">
 							<fieldset>
 								<fieldset>
-									<div class="topping_name">
-										<label>Topping Name
-										<input type="text" name="topping_name">
-										</label>
-									</div>
-								</fieldset>
-								<fieldset>
-									<div class="total_cost">
-										<label>Topping Price
-										<input type="number" step="0.01" name="total_cost">
-										</label>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label>Topping Name</label>
+											<input class="form-control" type="text" name="topping_name"> </div>
+										<div class="form-group col-md-6">
+											<label>Topping Price</label>
+											<input class="form-control" type="number" step="0.01" name="total_cost"> </div>
 									</div>
 								</fieldset>
 								<input type="submit" class="btn btn-primary btn-lg" value="SUBMIT" name="topping-up">
@@ -83,7 +79,7 @@
 		<div class="container">
 			<div class="card text-center">
 				<div class="card-header">
-					<h2 class="card-title">All Toppings</h2>
+					<h2 class="card-title">TOPPINGS</h2>
 				</div>
 				<div class="food-menu-card">
 					<div class="topping-table" style="overflow-y:hidden">
