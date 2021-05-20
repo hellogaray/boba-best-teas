@@ -49,20 +49,21 @@
 											<fieldset>
 												<div class="form-group">
 													<label>Drink Name</label>
-													<input class="form-control" type="text" name="drink_name"> 
+													<input class="form-control" type="text" name="drink_name" required> 
 												</div>
 											</fieldset>
 											<fieldset>
 												<div class="form-row">
 													<div class="form-group col-md-4">
 														<label>Small Cost</label>
-														<input class="form-control" type="number" step="0.01" name="small_cost"> </div>
+														<input class="form-control" type="number" step="0.01" name="small_cost" min="0" required> </div>
 													<div class="form-group col-md-4">
 														<label>Medium Cost</label>
-														<input class="form-control" type="number" step="0.01" name="medium_cost"> </div>
+														<input class="form-control" type="number" step="0.01" name="medium_cost" min="0" required> </div>
 													<div class="form-group col-md-4">
 														<label>Large Cost</label>
-														<input class="form-control" type="number" step="0.01" name="large_cost"> </div>
+														<input class="form-control" type="number" step="0.01" name="large_cost" min="0" required> </div>
+												</div>
 											</fieldset>
 											<input type="submit" class="btn btn-primary btn-lg" value="SUBMIT" name="drink-create"> </fieldset>
 									</form>

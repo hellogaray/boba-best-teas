@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<!-- End of Bootstrap Style -->
 		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
-		<title>Boba Best-Teas - Add New Customer</title>
+		<title>Boba Best-Teas</title>
 	</head>
 	<body>
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -48,73 +48,69 @@
 		<p>
 		<p>
 		<p>
-		<!-- Register Form -->
+		<!-- Drink Instance Form -->
 		<div class="container">
 			<div class="card text-center">
 				<div class="card-header">
-					<h2 class="card-title">ADD CUSTOMER</h2>
+					<h2 class="card-title">ADD DRINK INSTANCE TO ORDER {% for row in order_id %}{{row[0]}}{% endfor %}</h2>
 				</div>
-				<div class="food-menu-card">
-					<div class="customer-form">
-						<form id="addcustomer" action="/customer" method="post">
+				<div class="order-menu">
+					<div class="form-group">
+						<form id="addorder" action="/instances" method="POST">
 							<fieldset>
-								<div class="form-row">
-									<div class="form-group col-md-4">
-										<label>First Name</label>
-										<input class="form-control" type="text" name="first_name" required> </div>
-									<div class="form-group col-md-4">
-										<label>Last Name</label>
-										<input class="form-control" type="text" name="last_name" required> </div>
-									<div class="form-group col-md-4">
-										<label>Phone Number</label>
-										<input class="form-control" type="text" name="phone_number" placeholder="000-000-0000" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required> </div>
-								</div>
-							</fieldset>
-								<input type="submit" class="btn btn-primary btn-lg" value="SUBMIT" name="customer_create">
+								<fieldset>
+									<div class="form-row">
+										<div class="form-group col-md-4">
+											<label>Order ID</label>
+											<input class="form-control" type="number" name="order_id" value="{% for row in order_id %}{{row[0]}}{% endfor %}" readonly> </div>
+										<div class="form-group col-md-6">
+											<label>Drink ID</label>
+											<select class="form-control" name="drink_id">
+												<!-- display all drinks inside this dropdown -->
+												{% for d in drinks %} <option value="{{ d[0] }}">{{ d[1] }}</option> {% endfor %} </select></div>
+										<div class="form-group col-md-2">
+											<label>Size</label>
+											<input class="form-control" type="number" name="size" min="1" required> </div>
+									</div>
+								</fieldset>
+								<input type="submit" class="btn btn-primary btn-lg" value="SUBMIT" name="drink_instance-up">
 							</fieldset>
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- All Customers Table -->
+		!-- Toppings  Form -->
 		<div class="container">
 			<div class="card text-center">
 				<div class="card-header">
-					<h2 class="card-title">CUSTOMERS</h2>
+					<h2 class="card-title">ADD DRINK INSTANCE TO ORDER {% for row in order_id %}{{row[0]}}{% endfor %}</h2>
 				</div>
-				<div class="food-menu-card">
-					<div class="customer-form" style="overflow-y:hidden">
-						<table class="table">
-							<thead>
-								<tr>
-									<th scope="col">Customer ID</th>
-									<th scope="col">First Name</th>
-									<th scope="col">Last Name</th>
-									<th scope="col">Phone Numer</th>
-									<th scope="col"></th>
-								</tr>
-							</thead>
-							<tbody>
-                                <tr>
-                                {% for row in data %}
-                                <tr>
-                                    <td>{{row[0]}}</td>
-                                    <td>{{row[1]}}</td>
-                                    <td>{{row[2]}}</td>
-                                    <td>{{row[3]}}</td>
-									<td>
-										<button onclick="updatePerson({{row[0]}})" class="btn btn-primary btn-sm" name="add-item">EDIT</button>
-										<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM" name="add-item">X</button>
-									</td>
-                                </tr>
-                                {% endfor %}
-                                </tr>
-                            </tbody>
-						</table>
+				<div class="order-menu">
+					<div class="form-group">
+						<form id="addorder" action="/instances" method="POST">
+							<fieldset>
+								<fieldset>
+									<div class="form-row">
+										<div class="form-group col-md-4">
+											<label>Instance ID</label>
+											<input class="form-control" type="number" name="instanced_id" value="{% for row in instance_id %}{{row[0]}}{% endfor %}" readonly> </div>
+										<div class="form-group col-md-6">
+											<label>Drink ID</label>
+											<select class="form-control" name="drink_id">
+												<!-- display all drinks inside this dropdown -->
+												{% for i in topping %} <option value="{{ d[0] }}">{{ d[1] }}</option> {% endfor %} </select></div>
+										<div class="form-group col-md-2">
+											<label>Size</label>
+											<input class="form-control" type="number" name="size" min="1" required> </div>
+									</div>
+								</fieldset>
+								<input type="submit" class="btn btn-primary btn-lg" value="SUBMIT" name="drink_instance-up">
+							</fieldset>
+						</form>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>	
 	</body>
 </html>

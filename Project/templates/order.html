@@ -48,91 +48,100 @@
 		<p>
 		<p>
 		<p>
-			<!-- Order Form -->
+		<!-- Order Form -->
 		<div class="container">
 			<div class="card text-center">
 				<div class="card-header">
-					<h2 class="card-title">ORDER</h2>
+					<h2 class="card-title">CREATE ORDER</h2>
 				</div>
-				<div class="food-menu-card">
-					<div class="order-form">
-						<form action="#" method="get">
+				<div class="order-menu">
+					<div class="form-group">
+						<form id="addorder" action="/order" method="POST">
 							<fieldset>
 								<fieldset>
-									<div class="cid">
-										<label>
-										Customer ID
-										<input type="text" name="cid">
-										</label>
-									</div>
+										<div class="form-group">
+											<label>Customer ID</label>
+											<select class="form-control" name="customer_id">
+												<!-- display all planets inside this dropdown -->
+												{% for c in customers %} <option value="{{ c[0] }}">Customer #{{ c[0] }}: {{ c[1] }}  {{ c[2] }}</option> {% endfor %} 
+											</select>
+										</div>
 								</fieldset>
-								<fieldset>
-									<p>
-									<div class="form-group">
-										<label for="exampleFormControlSelect1">Select a Base Drink</label>
-										<select class="form-control" id="exampleFormControlSelect1">
-											<option>Boba Tealicious</option>
-											<option>Double Bubble</option>
-											<option>So ThirsTea</option>
-											<option>Bubblicious</option>
-										</select>
-									</div>
-									<p>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-										<label class="form-check-label" for="inlineRadio1">Small</label>
-									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio" name="inlineRadioOptions"  value="option2">
-										<label class="form-check-label">Medium</label>
-									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio" name="inlineRadioOptions"  value="option2">
-										<label class="form-check-label">Large</label>
-									</div>
-									<p>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="topping-1">
-										<label class="form-check-label" for="inlineCheckbox1"> Topping 1 ($0.50) </label>
-									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox"  value="topping-2">
-										<label class="form-check-label"> Topping 2 ($0.50) </label>
-									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox"  value="topping-3">
-										<label class="form-check-label"> Topping 3 ($0.50) </label>
-									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox"  value="topping-4">
-										<label class="form-check-label"> Topping 4 ($0.50) </label>
-									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox"  value="topping-5">
-										<label class="form-check-label"> Topping 5 ($0.50) </label>
-									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox"  value="topping-6">
-										<label class="form-check-label"> Topping 6 ($0.50) </label>
-									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox"  value="topping-7">
-										<label class="form-check-label"> Topping 7 ($0.50) </label>
-									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox"  value="topping-8">
-										<label class="form-check-label"> Topping 8 ($0.00) </label>
-									</div>
-								</fieldset>
-								<button onclick="myFunction()" type="submit" class="btn btn-primary btn-lg" value="ADD ITEM"  name="add-item">ADD</button>
-								<button onclick="myFunction()" type="submit" class="btn btn-primary btn-lg" value="CHECKOUT"  name="checkout">CHECKOUT</button>
+								<input type="submit" class="btn btn-primary btn-lg" value="SUBMIT" name="order-up">
 							</fieldset>
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Searc Order by ID -->
+		<!-- Drinks to Order Form -->
+		<div class="container">
+			<div class="card text-center">
+				<div class="card-header">
+					<h2 class="card-title">Add Drinks</h2>
+				</div>
+				<div class="order-menu">
+					<div class="form-group">
+						<form id="addorder" action="/order" method="POST">
+							<fieldset>
+								<fieldset>
+									<div class="form-row">
+										<div class="form-group col-md-4">
+											<label>Order ID</label>
+											<input class="form-control" type="number" name="order_id" value="{% for row in order_id %}{{row[0]}}{% endfor %}" min="1" required> </div>
+										<div class="form-group col-md-6">
+											<label>Drink ID</label>
+											<select class="form-control" name="drink_id" required>
+												<!-- display all drinks inside this dropdown -->
+												{% for d in drinks %} <option value="{{ d[0] }}">{{ d[1] }}</option> {% endfor %} </select></div>
+										<div class="form-group col-md-2">
+											<label>Size</label>
+											<select class="form-control" name="size">
+												<!-- display all sizes inside this dropdown -->
+												<option value="0">S</option>
+												<option value="1">M</option>
+												<option value="2">L</option>
+											</select>
+										</div>
+									</div>
+								</fieldset>
+								<input type="submit" class="btn btn-primary btn-lg" value="SUBMIT" name="drink_instance-up">
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Toppings to Drinks Form -->
+		<div class="container">
+			<div class="card text-center">
+				<div class="card-header">
+					<h2 class="card-title">Add Toppings</h2>
+				</div>
+				<div class="order-menu">
+					<div class="form-group">
+						<form id="addorder" action="/order" method="POST">
+							<fieldset>
+								<fieldset>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label>Instance ID</label>
+											<input class="form-control" type="number" name="instance_id" value="{% for row in instance_id %}{{row[0]}}{% endfor %}" min="1" required> </div>
+										<div class="form-group col-md-6">
+											<label>Topping ID</label>
+											<select class="form-control" name="topping_id" required>
+												<!-- display all toppings inside this dropdown -->
+												{% for i in toppings %} <option value="{{ i[0] }}">{{ i[1] }}</option> {% endfor %} </select></div>
+									</div>
+								</fieldset>
+								<input type="submit" class="btn btn-primary btn-lg" value="SUBMIT" name="drink_instance-up">
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Search Order by ID -->
 		<div class="container">
 			<div class="card text-center">
 				<div class="card-header">
@@ -152,11 +161,11 @@
 		<div class="container">
 			<div class="card text-center">
 				<div class="card-header">
-					<h2 class="card-title">ORDERS</h2>
+					<h2 class="card-title">ORDER DETAILS</h2>
 				</div>
 				<div class="food-menu-card">
 					<div class="input-group">
-						<table class="table-order" style="overflow-y:hidden">
+						<table class="table">
 							<thead>
 								<tr>
 									<th scope="col">Order ID</th>
@@ -164,11 +173,9 @@
 									<th scope="col">First Name</th>
 									<th scope="col">Last Name</th>
 									<th scope="col">Instance ID</th>
-									<th scope="col">Drink NAme</th>
+									<th scope="col">Drink Name</th>
 									<th scope="col">Size</th>
 									<th scope="col">Size Cost</th>
-									<th scope="col">Topping Name</th>
-									<th scope="col">Total Cost</th>
 									<th scope="col"></th>
 								</tr>
 							</thead>
@@ -178,6 +185,12 @@
 								<tr>
 									<td>{{row[0]}}</td>
 									<td>{{row[1]}}</td>
+									<td>{{row[2]}}</td>
+									<td>{{row[3]}}</td>
+									<td>{{row[4]}}</td>
+									<td>{{row[5]}}</td>
+									<td>{{row[6]}}</td>
+									<td>{{row[7]}}</td>
 									<td>
 										<button onclick="updatePerson({{row[0]}})" class="btn btn-primary btn-sm" name="add-item">EDIT</button>
 										<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM" name="add-item">X</button>
