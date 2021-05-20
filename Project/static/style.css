@@ -181,9 +181,17 @@ input {
   text-align: center;
   display: block;
   background-color: #fff7e3;
-  padding: 12px 0;
+  padding: 0;
   margin-top: 8px;
+}
 
+select {
+  border: none;
+  text-align: center;
+  display: block;
+  background-color: #fff7e3;
+  padding: 0;
+  margin-top: 8px;
 }
 
 fieldset {
