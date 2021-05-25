@@ -9,7 +9,7 @@ webapp = Flask(__name__)
 def index():
     return render_template("index.html")
 
-# ------ ORDERS ------
+# ------------------------------ START OF ORDERS PAGE ------------------------------
 # SELECT for Order Page | Shows the Order Table.
 @webapp.route('/order')
 def order():
@@ -50,7 +50,7 @@ def order_create():
             execute_query(db_connection, query, data)
             return redirect(url_for('order'))
         # Add Drink to Order
-        if 'order_id' and 'drink_id' and 'size' in request.form: # Looks for order_id, drink_id, and size in the form, then proceeds. 
+        if 'order_id' and 'drink_id' and 'size' and 'instance_id' and 'topping_id' in request.form: # Looks for order_id, drink_id, and size in the form, then proceeds. 
             db_connection = connect_to_database()
             order_id = request.form['order_id']  # Searches for element named order_id to use as order_id in the query.
             drink_id = request.form['drink_id']  # Searches for element named drink_id to use as drink_id in the query.
@@ -59,22 +59,30 @@ def order_create():
             data = (order_id, drink_id, size)
             execute_query(db_connection, query, data)
             print("Added new drinks_instances!")# Prints to console that a new drink was added.
-            return redirect(url_for('order'))
-        # Add Toppings to Drinks
-        if 'instance_id' and 'topping_id' in request.form:  # looks for instance_id and topping_id in the form, then proceeds. 
-            db_connection = connect_to_database()
-            instance_id = request.form['instance_id']  # Searches for element named instance_id to use as instance_id in the query.
+            instance_id_query = "SELECT MAX(instance_id) FROM drinks_instances;"
+            instance_id =  execute_query(db_connection, instance_id_query).fetchone()
+
             topping_id = request.form['topping_id']  # Searches for element named topping_id to use as topping_id in the query.
-            query = 'INSERT INTO drinks_toppings (instance_id, topping_id) VALUES (%s,%s)'  # Inserts previous elements into drinks_toppings table.
+            query2 = 'INSERT INTO drinks_toppings (instance_id, topping_id) VALUES (instance_id,%s)'  # Inserts previous elements into drinks_toppings table.
             data = (instance_id, topping_id)
-            execute_query(db_connection, query, data)
+            execute_query(db_connection, query2, data)
             print("Added new drinks_toppings!")  # Prints to console that a new drink was added.
-            return redirect(url_for('order'))            
+            return redirect(url_for('order'))
+           
     # All Get Requests
     elif request.method == 'GET':  # Get Forms. 
         return redirect(url_for('order'))
 
-# ------ DRINKS ------
+# DELETE from Order table based on drink_id (first column).
+@webapp.route('/order/<int:order_id>')
+def delete_order(order_id):
+    db_connection = connect_to_database()
+    query = "DELETE FROM orders WHERE order_id = %s"
+    data = (order_id,)
+    execute_query(db_connection, query, data)
+    return redirect(url_for('order'))
+
+# ------------------------------ START OF DRINKS PAGE ------------------------------
 # SELECT for Drinks Page | Shows the Drinks Table.
 @webapp.route('/drink')
 def drink():
@@ -103,7 +111,16 @@ def base_drinks_create():
     elif request.method == 'GET':  # Get Forms. 
         return redirect(url_for('order'))
 
-# ------ TOPPINGS ------
+# DELETE from Drink table based on drink_id (first column).
+@webapp.route('/drink/<int:drink_id>')
+def delete_drink(drink_id):
+    db_connection = connect_to_database()
+    query = "DELETE FROM drinks WHERE drink_id = %s"
+    data = (drink_id,)
+    execute_query(db_connection, query, data)
+    return redirect(url_for('drink'))
+
+# ------------------------------ START OF TOPPINGS PAGE ------------------------------
 # SELECT for Topping Page | Shows the Topping Table.
 @webapp.route('/topping')
 def topping():
@@ -130,7 +147,16 @@ def topping_create():
     elif request.method == 'GET':  # Get Forms. 
         return redirect(url_for('order'))
 
-# ------ CUSTOMERS ------
+# DELETE from Topping table based on topping_id (first column).
+@webapp.route('/topping/<int:topping_id>')
+def delete_topping(topping_id):
+    db_connection = connect_to_database()
+    query = "DELETE FROM toppings WHERE topping_id = %s"
+    data = (topping_id,)
+    execute_query(db_connection, query, data)
+    return redirect(url_for('topping'))
+
+# ------------------------------ START OF CUSTOMERS PAGE ------------------------------
 # SELECT for Customer Page | Shows the Customer Table.
 @webapp.route('/customer')
 def customer():
@@ -145,15 +171,25 @@ def customer():
 def customer_create():
     # All Post Requests
     if request.method == 'POST':  # Post Forms. 
-        db_connection = connect_to_database()
-        first_name = request.form['first_name']  # Searches for element named first_name to use as first_name in the query.
-        last_name = request.form['last_name']  # Searches for element named last_name to use as last_name in the query.
-        phone_number = request.form['phone_number']  # Searches for element named phone_number to use as phone_number in the query.
-        query = 'INSERT INTO customers (first_name, last_name, phone_number) VALUES (%s,%s,%s)'  # Inserts previous elements into customers table.
-        data = (first_name, last_name, phone_number)
-        print("Added new customer!") # Prints to console that a new customer was added.
-        execute_query(db_connection, query, data)
-        return redirect(url_for('customer'))
+        if 'first_name' and 'last_name' and 'phone_number' in request.form: # looks for customer_id in the form, then proceeds. 
+            db_connection = connect_to_database()
+            first_name = request.form['first_name']  # Searches for element named first_name to use as first_name in the query.
+            last_name = request.form['last_name']  # Searches for element named last_name to use as last_name in the query.
+            phone_number = request.form['phone_number']  # Searches for element named phone_number to use as phone_number in the query.
+            query = 'INSERT INTO customers (first_name, last_name, phone_number) VALUES (%s,%s,%s)'  # Inserts previous elements into customers table.
+            data = (first_name, last_name, phone_number)
+            print("Added new customer!") # Prints to console that a new customer was added.
+            execute_query(db_connection, query, data)
+            return redirect(url_for('customer'))    
     # All Get Requests
     elif request.method == 'GET':  # Get Forms. 
         return redirect(url_for('order'))
+
+# DELETE from Customer table based on customer_id (first column).
+@webapp.route('/customer/<int:customer_id>')
+def delete_customer(customer_id):
+    db_connection = connect_to_database()
+    query = "DELETE FROM customers WHERE customer_id = %s"
+    data = (customer_id,)
+    execute_query(db_connection, query, data)
+    return redirect(url_for('customer'))
