@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!--Icons -->
+		<script src="https://kit.fontawesome.com/36a89004c5.js" crossorigin="anonymous"></script>
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<!-- End of Bootstrap Style -->
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+		<title>Boba Best-Teas</title>
+	</head>
+	<body>
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<!-- Nav Bar -->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<img src="{{url_for('static', filename='icon.png')}}" width="30" height="30" class="d-inline-block align-top" alt="boba-icon">Boba Best-Teas
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="nav navbar-nav ml-auto">
+						<li class="nav-item">
+						<a class="nav-link" href="{{url_for('index')}}"> HOME </a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{url_for('drink')}}"> DRINKS </a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{url_for('topping')}}"> TOPPINGS </a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{url_for('customer')}}"> CUSTOMERS </a>
+						</li>
+						<li class="nav-item">
+							<a href="{{url_for('order')}}" class="btn btn-primary mr-auto"> ORDER </a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<p>
+		<p>
+		<p>
+		<p>
+		<!-- Order Form -->
+		<div class="container">
+			<div class="card text-center">
+				<div class="card-header">
+					<h2 class="card-title">CREATE ORDER</h2>
+				</div>
+				<div class="order-menu">
+					<div class="form-group">
+						<form id="addorder" action="/order" method="POST">
+							<fieldset>
+								<fieldset>
+										<div class="form-group">
+											<label>Customer ID</label>
+											<select class="form-control" name="customer_id">
+												<!-- display all planets inside this dropdown -->
+												{% for c in customers %} <option value="{{ c[0] }}">Customer #{{ c[0] }}: {{ c[1] }}  {{ c[2] }}</option> {% endfor %} 
+											</select>
+										</div>
+								</fieldset>
+								<input type="submit" class="btn btn-primary btn-lg" value="SUBMIT" name="order-up">
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Drinks to Order Form -->
+		<div class="container">
+			<div class="card text-center">
+				<div class="card-header">
+					<h2 class="card-title">Add Drinks</h2>
+				</div>
+				<div class="order-menu">
+					<div class="form-group">
+						<form id="addorder" action="/order" method="POST">
+							<fieldset>
+								<fieldset>
+									<div class="form-row">
+										<div class="form-group col-md-4">
+											<label>Order ID</label>
+											<input class="form-control" type="number" name="order_id" value="{% for row in order_id %}{{row[0]}}{% endfor %}" min="1" required> </div>
+										<div class="form-group col-md-6">
+											<label>Drink ID</label>
+											<select class="form-control" name="drink_id" required>
+												<!-- display all drinks inside this dropdown -->
+												{% for d in drinks %} <option value="{{ d[0] }}">{{ d[1] }}</option> {% endfor %} </select></div>
+										<div class="form-group col-md-2">
+											<label>Size</label>
+											<select class="form-control" name="size">
+												<!-- display all sizes inside this dropdown -->
+												<option value="0">S</option>
+												<option value="1">M</option>
+												<option value="2">L</option>
+											</select>
+										</div>
+									</div>
+								</fieldset>
+								<input type="submit" class="btn btn-primary btn-lg" value="SUBMIT" name="drink_instance-up">
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Toppings to Drinks Form -->
+		<div class="container">
+			<div class="card text-center">
+				<div class="card-header">
+					<h2 class="card-title">Add Toppings</h2>
+				</div>
+				<div class="order-menu">
+					<div class="form-group">
+						<form id="addorder" action="/order" method="POST">
+							<fieldset>
+								<fieldset>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label>Instance ID</label>
+											<input class="form-control" type="number" name="instance_id" value="{% for row in instance_id %}{{row[0]}}{% endfor %}" min="1" required> </div>
+										<div class="form-group col-md-6">
+											<label>Topping ID</label>
+											<select class="form-control" name="topping_id" required>
+												<!-- display all toppings inside this dropdown -->
+												{% for i in toppings %} <option value="{{ i[0] }}">{{ i[1] }}</option> {% endfor %} </select></div>
+									</div>
+								</fieldset>
+								<input type="submit" class="btn btn-primary btn-lg" value="SUBMIT" name="drink_instance-up">
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Search Order by ID -->
+		<div class="container">
+			<div class="card text-center">
+				<div class="card-header">
+					<h2 class="card-title">SEARCH BY CUSTOMER ID</h2>
+				</div>
+				<div class="food-menu-card">
+					<div class="input-group">
+						<input id="search-order" class="form-control" />
+						<button type="button" class="btn btn-primary btn-sm">
+						<i class="fas fa-search"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- All Orders Table -->
+		<div class="container">
+			<div class="card text-center">
+				<div class="card-header">
+					<h2 class="card-title">ORDER DETAILS</h2>
+				</div>
+				<div class="food-menu-card">
+					<div class="input-group">
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">Order ID</th>
+									<th scope="col">Customer ID</th>
+									<th scope="col">First Name</th>
+									<th scope="col">Last Name</th>
+									<th scope="col">Instance ID</th>
+									<th scope="col">Drink Name</th>
+									<th scope="col">Size</th>
+									<th scope="col">Size Cost</th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+								{% for row in data %}
+								<tr>
+									<td>{{row[0]}}</td>
+									<td>{{row[1]}}</td>
+									<td>{{row[2]}}</td>
+									<td>{{row[3]}}</td>
+									<td>{{row[4]}}</td>
+									<td>{{row[5]}}</td>
+									<td>{{row[6]}}</td>
+									<td>{{row[7]}}</td>
+									<td>
+										<button onclick="updatePerson({{row[0]}})" class="btn btn-primary btn-sm" name="add-item">EDIT</button>
+										<button onclick="myFunction()" type="submit" class="btn btn-secondary btn-sm" value="ADD ITEM" name="add-item">X</button>
+									</td>
+								</tr>
+								{% endfor %}
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			function myFunction() {
+			  alert("I don't do anything at this point.");
+			}
+		</script>
+	</body>
+</html>
