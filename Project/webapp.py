@@ -16,20 +16,27 @@ def order():
     db_connection = connect_to_database()
     # Prints message to console.
     print("Executing a query on the database using the credentials from db_credentials.py: orders table, select all columns.")  # Prints message to console.
+    
     # Table showing all of the details of the orders. 
-    query = "SELECT orders.order_id, orders.customer_id, customers.first_name, customers.last_name, drinks_instances.instance_id, base_drinks.drink_name, drinks_instances.size, IF( size = 0, base_drinks.small_cost, IF( size = 1, base_drinks.medium_cost, IF( size = 2, base_drinks.large_cost, NULL ) ) ) AS 'Size Cost' FROM orders LEFT JOIN drinks_instances ON orders.order_id = drinks_instances.order_id LEFT JOIN customers ON orders.customer_id = customers.customer_id LEFT JOIN base_drinks ON drinks_instances.drink_id = base_drinks.drink_id LEFT JOIN drinks_toppings ON drinks_instances.instance_id = drinks_toppings.instance_id ORDER BY order_id;"
+    query = "SELECT orders.order_id, CONCAT_WS( ' ', customers.first_name, customers.last_name ) AS Customer, drinks_instance.instance_id, CONCAT_WS( ' - ', drinks_instance.instance_id, base_drinks.drink_name, IF( size = 0, '(S)', IF( size = 1, '(M)', IF(size = 2, '(L)', NULL) ) ) ) AS Drink, IF( size = 0, base_drinks.small_cost, IF( size = 1, base_drinks.medium_cost, IF( size = 2, base_drinks.large_cost, NULL ) ) ) AS 'Size Cost', toppings.topping_id, toppings.topping_name, toppings.total_cost FROM orders LEFT JOIN drinks_instance ON orders.order_id = drinks_instance.order_id LEFT JOIN customers ON orders.customer_id = customers.customer_id LEFT JOIN base_drinks ON drinks_instance.drink_id = base_drinks.drink_id LEFT JOIN drinks_topping ON drinks_instance.instance_id = drinks_topping.instance_id LEFT JOIN toppings ON drinks_topping.topping_id = toppings.topping_id ORDER BY order_id, instance_id;"
     data = execute_query(db_connection, query)
+
+    # Dropdown menu that shows all customers to create a new order.
     cust_query = 'SELECT customer_id, first_name, last_name FROM customers'
     cust_results = execute_query(db_connection, cust_query).fetchall()
+    
     # Show the most recent Order as an option to add a new drink.
     order_id_query = "SELECT MAX(order_id) FROM orders;"
     order_id =  execute_query(db_connection, order_id_query)
+    
     # Shows the list of ID (names) possible to be shown on the select.
     drink_name = 'SELECT drink_id, drink_name FROM base_drinks'
     dn_result = execute_query(db_connection, drink_name).fetchall()
+    
     # Show the most recent Instance ID as an option to add a new toppings.
-    instance_id_query = "SELECT MAX(instance_id) FROM drinks_instances;"
+    instance_id_query = "SELECT MAX(instance_id) FROM drinks_instance;"
     instance_id =  execute_query(db_connection, instance_id_query)
+    
     # Shows the list of Toppings (names) possible to be shown on the select.
     topping_name = 'SELECT topping_id, topping_name FROM toppings'
     tn_result = execute_query(db_connection, topping_name).fetchall()
@@ -40,6 +47,7 @@ def order():
 def order_create():
     # All Post Requests
     if request.method == 'POST':  # Post Forms. 
+        
         # Create new Order Form
         if 'customer_id' in request.form: # looks for customer_id in the form, then proceeds. 
             db_connection = connect_to_database()
@@ -49,36 +57,58 @@ def order_create():
             print("Added new order!") # Prints to console that a new order was added.
             execute_query(db_connection, query, data)
             return redirect(url_for('order'))
+        
         # Add Drink to Order
         if 'order_id' and 'drink_id' and 'size' and 'instance_id' and 'topping_id' in request.form: # Looks for order_id, drink_id, and size in the form, then proceeds. 
             db_connection = connect_to_database()
             order_id = request.form['order_id']  # Searches for element named order_id to use as order_id in the query.
             drink_id = request.form['drink_id']  # Searches for element named drink_id to use as drink_id in the query.
             size = request.form['size']  # Searches for element named size to use as size in the query.
-            query = 'INSERT INTO drinks_instances (order_id, drink_id, size) VALUES (%s,%s,%s)'  # Inserts previous elements into drinks_instances table.
+            query = 'INSERT INTO drinks_instance (order_id, drink_id, size) VALUES (%s,%s,%s)'  # Inserts previous elements into drinks_instance table.
             data = (order_id, drink_id, size)
             execute_query(db_connection, query, data)
-            print("Added new drinks_instances!")# Prints to console that a new drink was added.
-            instance_id_query = "SELECT MAX(instance_id) FROM drinks_instances;"
-            instance_id =  execute_query(db_connection, instance_id_query).fetchone()
-
-            topping_id = request.form['topping_id']  # Searches for element named topping_id to use as topping_id in the query.
-            query2 = 'INSERT INTO drinks_toppings (instance_id, topping_id) VALUES (instance_id,%s)'  # Inserts previous elements into drinks_toppings table.
-            data = (instance_id, topping_id)
-            execute_query(db_connection, query2, data)
-            print("Added new drinks_toppings!")  # Prints to console that a new drink was added.
+            print("Added new drinks_instance!")# Prints to console that a new drink was added.
+            
+            # Gets the Order Form working as a single form instead of three form. Using .fecthone() to obtain IDs as they are created.
+            instance_id_query = "SELECT MAX(instance_id) FROM drinks_instance;"
+            query_instance_id =  execute_query(db_connection, instance_id_query)  # Gets the most recent instance_id from db.
+            instance_id = query_instance_id.fetchone()
+            topping_id = request.form.getlist('topping_id')  # Searches for element named topping_id to use as topping_id in the query.
+            for topping in topping_id:
+                drink_topping_query = 'INSERT INTO drinks_topping (instance_id, topping_id) VALUES (%s, %s)'  # Inserts previous elements into drinks_topping table.
+                dt_data = (str(instance_id[0]), topping)
+                execute_query(db_connection, drink_topping_query, dt_data)
+                print("Added topping " + topping + " to drink instnace " + str(instance_id[0]))  # Prints to console that a new topping was added.
             return redirect(url_for('order'))
            
     # All Get Requests
     elif request.method == 'GET':  # Get Forms. 
         return redirect(url_for('order'))
 
-# DELETE from Order table based on drink_id (first column).
+# DELETE Order table based on drink_id (first column).
 @webapp.route('/order/<int:order_id>')
 def delete_order(order_id):
     db_connection = connect_to_database()
     query = "DELETE FROM orders WHERE order_id = %s"
     data = (order_id,)
+    execute_query(db_connection, query, data)
+    return redirect(url_for('order'))
+
+# DELETE Drink from Order table based on instance_id. 
+@webapp.route('/instance/<int:instance_id>')
+def delete_instance(instance_id):
+    db_connection = connect_to_database()
+    query = "DELETE FROM drinks_instance WHERE instance_id = %s"
+    data = (instance_id,)
+    execute_query(db_connection, query, data)
+    return redirect(url_for('order'))
+
+# DELETE Topping from Drinks_toppings based on topping_id and instance_id. 
+@webapp.route('/instance/<int:instance_id>/topping/<int:topping_id>')
+def delete_topping_from_instance(instance_id, topping_id):
+    db_connection = connect_to_database()
+    query = "DELETE FROM drinks_topping WHERE instance_id = %s AND topping_id = %s"
+    data = (instance_id, topping_id,)
     execute_query(db_connection, query, data)
     return redirect(url_for('order'))
 
@@ -107,6 +137,7 @@ def base_drinks_create():
         data = (drink_name, small_cost, medium_cost, large_cost)
         execute_query(db_connection, query, data)
         return redirect(url_for('drink'))
+    
     # All Get Requests
     elif request.method == 'GET':  # Get Forms. 
         return redirect(url_for('order'))
@@ -115,7 +146,7 @@ def base_drinks_create():
 @webapp.route('/drink/<int:drink_id>')
 def delete_drink(drink_id):
     db_connection = connect_to_database()
-    query = "DELETE FROM drinks WHERE drink_id = %s"
+    query = "DELETE FROM base_drinks WHERE drink_id = %s"
     data = (drink_id,)
     execute_query(db_connection, query, data)
     return redirect(url_for('drink'))
@@ -143,6 +174,7 @@ def topping_create():
         print("Added new topping!")  # Prints to console that a new topping was added.
         execute_query(db_connection, query, data)
         return redirect(url_for('topping'))
+    
     # All Get Requests
     elif request.method == 'GET':  # Get Forms. 
         return redirect(url_for('order'))
@@ -181,6 +213,7 @@ def customer_create():
             print("Added new customer!") # Prints to console that a new customer was added.
             execute_query(db_connection, query, data)
             return redirect(url_for('customer'))    
+    
     # All Get Requests
     elif request.method == 'GET':  # Get Forms. 
         return redirect(url_for('order'))

@@ -7,8 +7,13 @@
       <script src="https://kit.fontawesome.com/36a89004c5.js" crossorigin="anonymous"></script>
       <!-- Bootstrap -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-      <!-- End of Bootstrap Style -->
+      <!-- CSS Style -->
       <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+      <!-- Favicon -->
+      <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}">
+      <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}">
+      <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='/favicon-16x16.png')}}">
+      <link rel="manifest" href="/site.webmanifest">
       <title>Boba Best-Teas</title>
    </head>
    <body>
@@ -89,6 +94,9 @@
                            <fieldset>
                               <div class="form-group">
                                  <label>Order ID</label>
+                                 <div class="form-group col-md-6">
+                                    
+                                 </div>
                                  <input class="form-control" type="number" name="order_id" value="{% for row in order_id %}{{row[0]}}{% endfor %}" min="1" required> 
                               </div>
                               <div class="form-row">
@@ -113,7 +121,7 @@
                               </div>
                               <div class="form-group">
                                  <label>Topping ID</label>
-                                 <select class="form-control" name="topping_id" required multiple>
+                                 <select class="form-control" name="topping_id" size="5" required multiple>
                                     <!-- display all toppings inside this dropdown -->
                                     {% for i in toppings %} 
                                     <option value="{{ i[0] }}">{{ i[1] }}</option>
@@ -153,15 +161,14 @@
                   <table class="table">
                      <thead>
                         <tr>
-                           <th scope="col">Order ID</th>
-                           <th scope="col">Customer ID</th>
-                           <th scope="col">First Name</th>
-                           <th scope="col">Last Name</th>
-                           <th scope="col">Instance ID</th>
-                           <th scope="col">Drink Name</th>
-                           <th scope="col">Size</th>
-                           <th scope="col">Size Cost</th>
-                           <th scope="col"></th>
+                           <th scope="col">Order</th>
+                           <th scope="col">Delete Order</th>  <!-- Button to Delete Order -->
+                           <th scope="col" style="width:10%">Customer</th>
+                           <th scope="col" style="width:20%">Drink</th>
+                           <th scope="col">Delete Drink</th>  <!-- Button to Delete Drink (Instance) -->
+                           <th scope="col" style="width:15%">Topping</th>
+                           <th scope="col">Delete Topping</th>  <!-- Button to Delete Topping -->
+                           <th scope="col">Edit Drink</th>  <!-- Button to Edit Drink Istance (Drink, Size, Topping) -->
                         </tr>
                      </thead>
                      <tbody>
@@ -169,16 +176,20 @@
                            {% for row in data %}
                         <tr>
                            <td>{{row[0]}}</td>
-                           <td>{{row[1]}}</td>
-                           <td>{{row[2]}}</td>
-                           <td>{{row[3]}}</td>
-                           <td>{{row[4]}}</td>
-                           <td>{{row[5]}}</td>
-                           <td>{{row[6]}}</td>
-                           <td>{{row[7]}}</td>
                            <td>
-                              <button onclick="updatePerson({{row[0]}})" class="btn btn-primary btn-sm" name="add-item">EDIT</button>
                               <button onclick="window.location = '/order/{{row[0]}}'" class="btn btn-secondary btn-sm" value="delete-order" name="delete-order">X</button>
+                           </td>
+                           <td>{{row[1]}}</td>
+                           <td>{{row[3]}}</td>
+                           <td>
+                              <button onclick="window.location = '/instance/{{row[2]}}'" class="btn btn-secondary btn-sm" value="delete-instance" name="delete-instance">X</button>
+                           </td>
+                           <td>{{row[6]}}</td>
+                           <td>
+                              <button onclick="window.location = '/instance/{{row[2]}}/topping/{{row[5]}}'" class="btn btn-secondary btn-sm" value="delete-instance" name="delete-instance">X</button>
+                           </td>
+                           <td>
+                              <button onclick="updatePerson({{row[0]}})" class="btn btn-primary btn-sm" name="add-item"><span class=reload>&#x21bb;</span></button>
                            </td>
                         </tr>
                         <tr>
