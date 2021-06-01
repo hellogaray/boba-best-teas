@@ -104,8 +104,6 @@ def delete_topping_from_instance(instance_id, topping_id):
     execute_query(db_connection, query, data)
     return redirect(url_for('order'))
 
-
-
 # ------------------------------ START OF DRINKS PAGE ------------------------------
 @webapp.route('/drink', methods=['POST', 'GET'])
 def drink():
@@ -140,31 +138,30 @@ def delete_drink(drink_id):
     execute_query(db_connection, query, data)
     return redirect(url_for('drink'))
 
+
 # ------------------------------ START OF UPDATE DRINKS PAGE ------------------------------
 @webapp.route('/update_drink/<int:drink_id>', methods=['POST','GET'])
 def update_drink(drink_id):
     db_connection = connect_to_database()
+    # All Post Requests
     if request.method == 'GET':
         drinks_query = 'SELECT drink_id, drink_name, small_cost, medium_cost, large_cost from base_drinks WHERE drink_id = %s'  % (drink_id)
         drinks_results = execute_query(db_connection, drinks_query).fetchall()
-
-        if drinks_results == None:
-            return "This drink does not exist."
-
         return render_template('update_drink.html', drinks_results = drinks_results)
-    elif request.method == 'POST':
-        drink_name = request.form['drink_name']
-        small_cost = request.form['small_cost']
-        medium_cost = request.form['medium_cost']
-        large_cost = request.form['large_cost']
-        drink_id = request.form['drink_id']
 
+    # All Get Requests
+    # Updates a drink from base_drinks based on its drink_id.
+    elif request.method == 'POST':
+        drink_name = request.form['drink_name']  # Searches for element named drink_name to use as drink_name in the query.
+        small_cost = request.form['small_cost']  # Searches for element named small_cost to use as small_cost in the query.
+        medium_cost = request.form['medium_cost']  # Searches for element named medium_cost to use as medium_cost in the query.
+        large_cost = request.form['large_cost']  # Searches for element named large_cost to use as large_cost in the query.
+        drink_id = request.form['drink_id']  # Searches for element named drink_id to use as drink_id in the query.
         query = "UPDATE base_drinks SET drink_name = %s, small_cost = %s, medium_cost = %s, large_cost = %s WHERE drink_id = %s"
         data = (drink_name, small_cost, medium_cost, large_cost, drink_id)
         execute_query(db_connection, query, data)
-
-
         return redirect(url_for('drink'))
+
 
 # ------------------------------ START OF TOPPINGS PAGE ------------------------------
 @webapp.route('/topping', methods=['POST', 'GET'])
@@ -197,6 +194,28 @@ def delete_topping(topping_id):
     data = (topping_id,)
     execute_query(db_connection, query, data)
     return redirect(url_for('topping'))
+
+
+# ------------------------------ START OF UPDATE TOPPINGS PAGE ------------------------------
+@webapp.route('/update_topping/<int:topping_id>', methods=['POST','GET'])
+def update_topping(topping_id):
+    db_connection = connect_to_database()
+    # All Post Requests
+    if request.method == 'GET':
+        toppings_query = 'SELECT topping_id, topping_name, total_cost from toppings WHERE topping_id = %s'  % (topping_id)
+        toppings_results = execute_query(db_connection, toppings_query).fetchall()
+        return render_template('update_topping.html', toppings_results = toppings_results)
+
+    # All Get Requests
+    # Updates a topping from toppings based on its topping_id.
+    elif request.method == 'POST':
+        topping_name = request.form['topping_name']  # Searches for element named topping_name to use as topping_name in the query.
+        total_cost = request.form['total_cost']  # Searches for element named total_cost to use as total_cost in the query.
+        topping_id = request.form['topping_id']  # Searches for element named topping_id to use as topping_id in the query.
+        query = "UPDATE toppings SET topping_name = %s, total_cost = %s WHERE topping_id = %s"
+        data = (topping_name, total_cost, topping_id)
+        execute_query(db_connection, query, data)
+        return redirect(url_for('topping'))
 
 
 # ------------------------------ START OF CUSTOMERS PAGE ------------------------------
@@ -232,3 +251,26 @@ def delete_customer(customer_id):
     data = (customer_id,)
     execute_query(db_connection, query, data)
     return redirect(url_for('customer'))
+
+
+# ------------------------------ START OF UPDATE CUSTOMERS PAGE ------------------------------
+@webapp.route('/update_customer/<int:customer_id>', methods=['POST','GET'])
+def update_customer(customer_id):
+    db_connection = connect_to_database()
+    # All Post Requests
+    if request.method == 'GET':
+        customer_query = 'SELECT customer_id, first_name, last_name, phone_number from customers WHERE customer_id = %s'  % (customer_id)
+        customer_results = execute_query(db_connection, customer_query).fetchall()
+        return render_template('update_customer.html', customer_results = customer_results)
+
+    # All Get Requests
+    # Updates a customer from customers based on its customer_id.
+    elif request.method == 'POST':
+        first_name = request.form['first_name']  # Searches for element named first_name to use as first_name in the query.
+        last_name = request.form['last_name']  # Searches for element named last_name to use as last_name in the query.
+        phone_number = request.form['phone_number']  # Searches for element named phone_number to use as phone_number in the query.
+        customer_id = request.form['customer_id']  # Searches for element named customer_id to use as customer_id in the query.
+        query = "UPDATE customers SET first_name = %s, last_name = %s, phone_number = %s WHERE customer_id = %s"
+        data = (first_name, last_name, phone_number, customer_id)
+        execute_query(db_connection, query, data)
+        return redirect(url_for('customer'))
