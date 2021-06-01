@@ -24,15 +24,27 @@
       <!-- Nav Bar -->
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
          <img src="{{url_for('static', filename='icon.png')}}" width="30" height="30" class="d-inline-block align-top" alt="boba-icon">Boba Best-Teas
-         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+         </button>
          </div>
          <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="nav navbar-nav ml-auto">
-               <li class="nav-item"> <a class="nav-link" href="{{url_for('index')}}"> HOME </a> </li>
-               <li class="nav-item"> <a class="nav-link" href="{{url_for('drink')}}"> DRINKS </a> </li>
-               <li class="nav-item"> <a class="nav-link" href="{{url_for('topping')}}"> TOPPINGS </a> </li>
-               <li class="nav-item"> <a class="nav-link" href="{{url_for('customer')}}"> CUSTOMERS </a> </li>
-               <li class="nav-item"> <a href="{{url_for('order')}}" class="btn btn-primary mr-auto"> ORDER </a> </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="{{url_for('index')}}"> HOME </a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="{{url_for('drink')}}"> DRINKS </a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="{{url_for('topping')}}"> TOPPINGS </a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="{{url_for('customer')}}"> CUSTOMERS </a>
+               </li>
+               <li class="nav-item">
+                  <a href="{{url_for('order')}}" class="btn btn-primary mr-auto"> ORDER </a>
+               </li>
             </ul>
          </div>
          </div>
@@ -41,82 +53,44 @@
       <p>
       <p>
       <p>
-         <!-- Add Topping Form -->
+         <!-- Update Topping Form -->
       <div class="container">
          <div class="card text-center">
             <div class="card-header">
-               <h2 class="card-title">ADD DRINK</h2>
+               <h2 class="card-title">UPDATE DRINK</h2>
             </div>
-            <div class="drink-menu">
+            <div class="update-drink-menu">
                <div class="customer-form">
-                  <form id="adddrink" action="/drink" method="post">
+                  {% for column in drinks_results %}
+                  <form id="update_drink" action="/update_drink/{{column[0]}}" method="post">
                      <fieldset>
                         <fieldset>
                            <div class="form-group">
+                              <input type="hidden" name="drink_id" value = "{{column[0]}}">
                               <label>Drink Name</label>
-                              <input class="form-control" type="text" name="drink_name" required> 
+                              <input class="form-control" type="text" name="drink_name" required value="{{column[1]}}"> 
                            </div>
                         </fieldset>
                         <fieldset>
                            <div class="form-row">
                               <div class="form-group col-md-4">
                                  <label>Small Cost</label>
-                                 <input class="form-control" type="number" step="0.01" name="small_cost" min="0" required> 
+                                 <input class="form-control" type="number" step="0.01" name="small_cost" min="0" required value="{{column[2]}}"> 
                               </div>
                               <div class="form-group col-md-4">
                                  <label>Medium Cost</label>
-                                 <input class="form-control" type="number" step="0.01" name="medium_cost" min="0" required> 
+                                 <input class="form-control" type="number" step="0.01" name="medium_cost" min="0" required value="{{column[3]}}"> 
                               </div>
                               <div class="form-group col-md-4">
                                  <label>Large Cost</label>
-                                 <input class="form-control" type="number" step="0.01" name="large_cost" min="0" required> 
+                                 <input class="form-control" type="number" step="0.01" name="large_cost" min="0" required value="{{column[4]}}"> 
                               </div>
                            </div>
+                           {% endfor %}
                         </fieldset>
                         <input type="submit" class="btn btn-primary btn-lg" value="SUBMIT" name="drink-create"> 
                      </fieldset>
                   </form>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- Topping Form -->
-      <div class="container">
-         <div class="card text-center">
-            <div class="card-header">
-               <h2 class="card-title">DRINKS</h2>
-            </div>
-            <div class="food-menu-card">
-               <div class="drinks-form" style="overflow-y:hidden">
-                  <table class="table">
-                     <thead>
-                        <tr>
-                           <th scope="col">Drink ID</th>
-                           <th scope="col">Drink Name</th>
-                           <th scope="col">Cost (Small)</th>
-                           <th scope="col">Cost (Medium)</th>
-                           <th scope="col">Cost (Large)</th>
-                           <th scope="col"></th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tr> {% for row in data %}
-                        <tr>
-                           <td>{{row[0]}}</td>
-                           <td>{{row[1]}}</td>
-                           <td>{{row[2]}}</td>
-                           <td>{{row[3]}}</td>
-                           <td>{{row[4]}}</td>
-                           <td>
-                              <button onclick="updatePerson({{row[0]}})" class="btn btn-primary btn-sm" name="add-item"><span class=reload>&#x21bb;</span></button>
-                              <button onclick="window.location = '/drink/{{row[0]}}'" class="btn btn-secondary btn-sm" value="delete-drink" name="delete-drink"><span class=reload>&#x2421;</span></button>
-                           </td>
-                        </tr>
-                        <tr>
-                           {% endfor %}
-                        </tr>
-                     </tbody>
-                  </table>
                </div>
             </div>
          </div>

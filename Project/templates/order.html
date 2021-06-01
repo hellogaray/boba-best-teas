@@ -137,7 +137,7 @@
             </div>
          </div>
       <!-- Search Order by ID -->
-      <div class="container">
+       <!--<div class="container">
          <div class="card text-center">
             <div class="card-header">
                <h2 class="card-title">SEARCH BY CUSTOMER ID</h2>
@@ -149,7 +149,7 @@
                </div>
             </div>
          </div>
-      </div>
+      </div> -->
       <!-- All Orders Table -->
       <div class="container">
          <div class="card text-center">
@@ -161,35 +161,29 @@
                   <table class="table">
                      <thead>
                         <tr>
-                           <th scope="col">Order</th>
-                           <th scope="col">Delete Order</th>  <!-- Button to Delete Order -->
-                           <th scope="col" style="width:10%">Customer</th>
-                           <th scope="col" style="width:20%">Drink</th>
-                           <th scope="col">Delete Drink</th>  <!-- Button to Delete Drink (Instance) -->
-                           <th scope="col" style="width:15%">Topping</th>
-                           <th scope="col">Delete Topping</th>  <!-- Button to Delete Topping -->
-                           <th scope="col">Edit Drink</th>  <!-- Button to Edit Drink Istance (Drink, Size, Topping) -->
+                           <th scope="col"colspan="2">Order</th>
+                           <th scope="col">Customer</th>
+                           <th scope="col" colspan="2">Drink</th>
+                           <th scope="col" colspan="2">Topping</th>
+
                         </tr>
                      </thead>
                      <tbody>
                         <tr>
                            {% for row in data %}
                         <tr>
-                           <td>{{row[0]}}</td>
-                           <td>
-                              <button onclick="window.location = '/order/{{row[0]}}'" class="btn btn-secondary btn-sm" value="delete-order" name="delete-order">X</button>
+                           <td style="text-align:right">{{row[0]}}</td>
+                           <td style="text-align:left">
+                              <button onclick="window.location = '/order/{{row[0]}}'" class="btn btn-secondary btn-sm" value="delete-order" name="delete-order"><span class=reload>&#x2421;</span></button>
                            </td>
                            <td>{{row[1]}}</td>
-                           <td>{{row[3]}}</td>
-                           <td>
-                              <button onclick="window.location = '/instance/{{row[2]}}'" class="btn btn-secondary btn-sm" value="delete-instance" name="delete-instance">X</button>
+                           <td style="text-align:right">{{row[3]}}</td>
+                           <td style="text-align:left">
+                              <button onclick="window.location = '/instance/{{row[2]}}'" class="btn btn-secondary btn-sm" value="delete-instance" name="delete-instance"><span class=reload>&#x2421;</span></button>
                            </td>
-                           <td>{{row[6]}}</td>
-                           <td>
-                              <button onclick="window.location = '/instance/{{row[2]}}/topping/{{row[5]}}'" class="btn btn-secondary btn-sm" value="delete-instance" name="delete-instance">X</button>
-                           </td>
-                           <td>
-                              <button onclick="updatePerson({{row[0]}})" class="btn btn-primary btn-sm" name="add-item"><span class=reload>&#x21bb;</span></button>
+                           <td style="text-align:right">{{row[6]}}</td>
+                           <td style="text-align:left">
+                              <button onclick="window.location = '/instance/{{row[2]}}/topping/{{row[5]}}'" class="btn btn-secondary btn-sm" value="delete-topping" name="delete-topping"><span class=reload>&#x2421;</span></button>
                            </td>
                         </tr>
                         <tr>
