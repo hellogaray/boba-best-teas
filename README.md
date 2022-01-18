@@ -1,7 +1,7 @@
 
 # Boba Best-Teas
-> Introduction to Database's Project: Oregon State University - CS 340
-> A boba store order management system, built for the web using mainly Python and SQL.
+> Introduction to Database's Project: Oregon State University - CS 340<p>
+> A boba store order management system and database, built for the web using mainly Python and SQL.
 
 
 
@@ -20,7 +20,7 @@
 | HTML          | Python        |
 | CSS           | MySQL         |
 | Bootstrap     | Jinja         |
-
+Cancel changes
 ## ⚙️ Database Outline
 <img src='https://raw.githubusercontent.com/hellogaray/cs340-project/main/Project/static/ss-diagram.png' width='700'>
 
