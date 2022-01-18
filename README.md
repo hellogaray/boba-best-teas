@@ -3,10 +3,7 @@
 > Introduction to Database's Project: Oregon State University - CS 340<p>
 > A boba store order management system and database, built for the web using mainly Python and SQL.
 
-
-
 ## 💻 Author
-
 ######  Leonel Garay
 [![github](https://img.shields.io/badge/github-FFF?style=for-the-badge&logo=github&logoColor=black)](https://www.github.com/HelloGaray)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/hellogaray)
@@ -21,6 +18,7 @@
 | CSS           | MySQL         |
 | Bootstrap     | Jinja         |
 Cancel changes
+
 ## ⚙️ Database Outline
 <img src='https://raw.githubusercontent.com/hellogaray/cs340-project/main/Project/static/ss-diagram.png' width='700'>
 
