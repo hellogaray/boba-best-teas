@@ -17,7 +17,6 @@
 | HTML          | Python        |
 | CSS           | MySQL         |
 | Bootstrap     | Jinja         |
-Cancel changes
 
 ## ⚙️ Database Outline
 <img src='https://raw.githubusercontent.com/hellogaray/cs340-project/main/Project/static/ss-diagram.png' width='700'>
@@ -32,15 +31,18 @@ Cancel changes
 - **orders**: Tracks the customers to which the orders belong.
   - Order ID (order_id - INT, PK, NOT NULL, AUTO INCREMENT, UNIQUE)
   - Customer (customer_id - INT, FK, NOT NULL): ID of the customer who made this order. 
+  
 - **drinks_instances**: When a customer orders a particular drink from base_drinks, a drink instance is created. This instance is then connected to any toppings the customer wants to add. This allows a customer to order multiple of the same base drink, each with different toppings or sizes.
   - Instance ID (instance_id - INT, PK, NOT NULL, AUTO INCREMENT, UNIQUE)
   - Order ID (order_id - INT, FK, NOT NULL): References the order this instance is part of.
   - Drink ID (drink_id - INT, FK, NOT NULL): References the base drink.
   - Size (size - INT, NOT NULL): 0 for Small, 1 for Medium, and 2 for Large.
 - **toppings**: Toppings can be added to drinks_instances
+  
   - Topping ID (topping_id - INT, PK, NOT NULL, AUTO INCREMENT, UNIQUE)
   - Topping Name (topping_name - VARCHAR, NOT NULL): The name of the topping.
   - Cost (total_cost, DECIMAL [4,2], NOT NULL): Price of the topping.
+  
  - **base_drinks**: Tracks drinks on the menu and the cost of each, based on size.
    - Drink ID (drink_id - INT, PK, NOT NULL, AUTO INCREMENT, UNIQUE)
    - Name (drink_name - VARCHAR, NOT NULL): The name of the base drink.
