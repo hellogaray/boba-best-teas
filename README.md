@@ -5,7 +5,7 @@
 
 
 
-## 💻 Authors
+## 💻 Author
 
 ######  Leonel Garay
 [![github](https://img.shields.io/badge/github-FFF?style=for-the-badge&logo=github&logoColor=black)](https://www.github.com/HelloGaray)
