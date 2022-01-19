@@ -11,7 +11,8 @@
 ######  Garrick Chan
 [![github](https://img.shields.io/badge/github-1d1d1d?style=for-the-badge&logo=github&logoColor=white)](https://www.github.com/HelloGaray)
 
-## ↔️ Screenshot
+## 📸 Screenshot
+<img src='https://raw.githubusercontent.com/hellogaray/cs340-project/main/Project/static/ssmain.png' width='700'>
   
 ## 🛠 Technology Stack
 | Front-End     | Back-End      |
