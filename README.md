@@ -11,14 +11,15 @@
 ######  Garrick Chan
 [![github](https://img.shields.io/badge/github-1d1d1d?style=for-the-badge&logo=github&logoColor=white)](https://www.github.com/HelloGaray)
 
-## ↔️ Video
+## ↔️ Screenshot
   
 ## 🛠 Technology Stack
 | Front-End     | Back-End      |
 | ------------- | ------------- |
 | HTML          | Python        |
-| CSS           | MySQL         |
-| Bootstrap     | Jinja         |
+| CSS           | Flask         |
+| Bootstrap     | MySQL         |
+|               | Jinja         |
 
 ## ⚙️ Database Outline
 <img src='https://raw.githubusercontent.com/hellogaray/cs340-project/main/Project/static/ss-diagram.png' width='700'>
