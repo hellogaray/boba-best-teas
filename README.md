@@ -6,7 +6,7 @@
 ## 💻 Author
 ######  Leonel Garay
 [![github](https://img.shields.io/badge/github-1d1d1d?style=for-the-badge&logo=github&logoColor=white)](https://www.github.com/HelloGaray)
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/hellogaray)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hellogaray/)
 [![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/hellogaray)
 ######  Garrick Chan
 [![github](https://img.shields.io/badge/github-1d1d1d?style=for-the-badge&logo=github&logoColor=white)](https://www.github.com/HelloGaray)
