@@ -1,7 +1,7 @@
 
 # Boba Best-Teas
 > Introduction to Database's Project: Oregon State University - CS 340<p>
-> A boba store order management system and database, built for the web using mainly Python and SQL.
+> A boba tea store order management system and database, built for the web using mainly Python and SQL.
 
 ## 💻 Author
 ######  Leonel Garay
